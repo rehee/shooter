@@ -11,19 +11,9 @@ namespace GameServices
     public class GameService:IGameService
     {
         private List<PlayerModule> playerPool { get; set; } = new List<PlayerModule>();
-
-
-        public Dictionary<int, IRoomProcessUnit> ProcessPool
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public List<IRoomProcessUnit> ProcessPool { get; set; } = new List<IRoomProcessUnit>();
 
         public List<PlayerModule> Players { get { return playerPool; } }
-
-
 
         public void NewRoom(PlayerModule player)
         {
@@ -53,5 +43,26 @@ namespace GameServices
             catch { return null; }
         }
 
+        public IRoomProcessUnit NewRoom()
+        {
+            var newRoom = new Room();
+            newRoom.Id = Guid.NewGuid().ToString();
+            var unit = new GameUnit(newRoom);
+            ProcessPool.Add(unit);
+            return unit;
+        }
+
+        public IRoomProcessUnit GetRoomById(string roomId)
+        {
+            var count = ProcessPool.Count;
+            for(var i = 0; i < count; i++)
+            {
+                if(ProcessPool[i].room.Id == roomId)
+                {
+                    return ProcessPool[i];
+                }
+            }
+            return null;
+        }
     }
 }

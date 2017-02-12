@@ -1,4 +1,5 @@
-﻿using Core.Module.Sprite.Players;
+﻿using Core.Module.Rooms;
+using Core.Module.Sprite.Players;
 using Core.Module.Sprite.Status;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,9 @@ namespace Core.Services.Games
 {
     public interface IRoomProcessUnit
     {
+        Room room { get; }
         void NextTick();
         string PushMessage();
         void MapLevelUp();
-        void AddPlayer(PlayerModule player);
-        void MovePlayer(PlayerModule player);
     }
 }

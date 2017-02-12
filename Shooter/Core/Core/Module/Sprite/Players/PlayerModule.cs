@@ -8,7 +8,11 @@ namespace Core.Module.Sprite.Players
 {
     public class PlayerModule:SpriteBase
     {
+        public PlayerStatusOption PlayerStatus { get; set; }
         public PlayerTypeOption PlayerType { get; set; }
+        public string RoomId { get; set; }
         public int TotalScore { get; set; }
+        public int PlayerX { get; set; }
+        public int PlayerY { get; set; }
     }
 }

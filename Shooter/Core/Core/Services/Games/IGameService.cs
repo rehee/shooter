@@ -8,10 +8,9 @@ namespace Core.Services.Games
 {
     public interface IGameService
     {
-        Dictionary<int,IRoomProcessUnit> ProcessPool { get; }
+        List<IRoomProcessUnit> ProcessPool { get; }
         List<PlayerModule> Players { get; }
-        void JoinGame(PlayerModule player);
-        void NewRoom(PlayerModule player);
-        PlayerModule GetPlayerById(string id);
+        IRoomProcessUnit NewRoom();
+        IRoomProcessUnit GetRoomById(string roomId);
     }
 }
