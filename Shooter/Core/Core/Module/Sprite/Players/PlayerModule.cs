@@ -1,4 +1,5 @@
-﻿using Core.Module.Sprite.Status;
+﻿using Core.Module.Sprite.Monster;
+using Core.Module.Sprite.Status;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,8 @@ namespace Core.Module.Sprite.Players
         public int TotalScore { get; set; }
         public int PlayerX { get; set; }
         public int PlayerY { get; set; }
+
+        public List<MonsterModule> newMonsterPool { get; set; } = new List<MonsterModule>();
+        public List<MonsterModule> removeMonsterPool { get; set; } = new List<MonsterModule>();
     }
 }

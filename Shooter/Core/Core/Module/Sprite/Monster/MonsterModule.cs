@@ -9,5 +9,6 @@ namespace Core.Module.Sprite.Monster
     public class MonsterModule:SpriteBase
     {
         public MonsterTypeOption MonsterType { get; set; }
+        public int MonsterX { get; set; }
     }
 }

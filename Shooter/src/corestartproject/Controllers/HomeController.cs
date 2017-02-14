@@ -13,7 +13,7 @@ namespace corestartproject.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return Content("hello");
+            return Redirect("/game/index.html");
            
         }
     }

@@ -14,11 +14,12 @@ namespace GameLogic.GameController
         private PlayerModule player;
         private IGameService gameService;
         private IRoomProcessUnit gameRoom;
-        public PlayerControl(IGameService gameService,PlayerModule player = null)
+        public PlayerControl(IGameService gameService)
         {
             this.gameService = gameService;
-            this.player = player;
         }
+        public PlayerModule Player { get { return player; } } 
+        public IRoomProcessUnit Room { get { return gameRoom; } }
         public void AddScore(int score)
         {
 
@@ -39,12 +40,20 @@ namespace GameLogic.GameController
         public void CreateRoom()
         {
             gameRoom=gameService.NewRoom();
-            gameRoom.room.Players.Add(player);
+            gameRoom.Room.Players.Add(player.Id,player);
         }
         public void JoinRoom(string roomId)
         {
             gameRoom = gameService.GetRoomById(roomId);
-            gameRoom.room.Players.Add(player);
+            gameRoom.Room.Players.Add(player.Id, player);
+        }
+        public void LeftRoom()
+        {
+            try
+            {
+                gameRoom.Room.Players.Remove(player.Id);
+            }
+            catch { }
         }
         public void NewPlayer(string name)
         {

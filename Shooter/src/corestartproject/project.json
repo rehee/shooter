@@ -8,12 +8,24 @@
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
     "Microsoft.Extensions.Logging.Console": "1.0.0",
+    "Microsoft.Extensions.Configuration.Abstractions": "1.1.0",
     "Microsoft.Extensions.Configuration.FileExtensions": "1.1.0",
     "Microsoft.Extensions.Configuration.Json": "1.1.0",
     "Microsoft.AspNetCore.Mvc": "1.1.0",
-    "Microsoft.AspNetCore.SignalR.Server": "0.2.0-preview2-22683",
     "Microsoft.AspNetCore.StaticFiles": "1.1.0",
-    "Microsoft.AspNetCore.Routing": "1.1.0"
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
+    "Microsoft.EntityFrameworkCore.Tools": "1.1.0-preview4-final",
+    "Microsoft.AspNetCore.Authorization": "1.1.0",
+    "Microsoft.AspNetCore.Identity": "1.1.0",
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.1.0",
+    "NETStandard.Library": "1.6.1",
+    "CommonEnveroment": "1.0.0-*",
+    "Core": "1.0.0-*",
+    "GameLogic": "1.0.0-*",
+    "GameServices": "1.0.0-*",
+    "Hubs": "1.0.0-*",
+    "Gray.Microsoft.AspNetCore.SignalR.Server": "0.2.0-alpha1",
+    "Microsoft.AspNetCore.WebSockets": "1.0.0"
   },
 
   "tools": {

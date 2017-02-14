@@ -10,7 +10,7 @@ namespace Core.Module.Sprite
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public AttributeModule Attributes { get; set; }
+        public AttributeModule Attributes { get; set; } = new AttributeModule();
         public SpriteTypeOption Type { get; set; }
     }
 }

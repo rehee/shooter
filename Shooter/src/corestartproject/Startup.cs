@@ -9,13 +9,22 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Routing;
+using Core;
+using Hubs;
+using GameLogic.GameController;
+using Core.Services.Games;
+using GameServices;
+using Core.Logic.Controllers;
+using Shooter.Web.Hubs;
+using CommonEnveroment;
 
 namespace Core.Start
 {
     public class Startup
     {
         public IConfiguration Configuration { get; set; }
-
+        public IEnveroment GameEnveroment { get; set; }
+        public IGameService GameService { get; set; }
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -23,7 +32,11 @@ namespace Core.Start
                                             .AddJsonFile("appsettings.json")
                                             .AddEnvironmentVariables();
             Configuration = builder.Build();
-            
+            GameEnveroment = new GameEnveroment(typeof(HubProcessUnit),typeof(PlayerControl));
+            GameService = new GameService(GameEnveroment);
+            GameEnveroment.SetGameService(GameService);
+
+            E.env = GameEnveroment;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -31,7 +44,11 @@ namespace Core.Start
             services.AddMvc();
             services.AddSignalR(options => options.Hubs.EnableDetailedErrors = true);
             services.AddSingleton(Configuration);
+            services.AddSingleton(GameService);
+            services.AddSingleton(GameEnveroment);
 
+            services.AddScoped<IRoomProcessUnit,GameUnit>();
+            services.AddScoped<IPlayerController, PlayerControl>();
 
             services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()));
         }
@@ -46,7 +63,9 @@ namespace Core.Start
 
             app.UseNodeModules(env.ContentRootPath);
             app.UseMvc(RouteMap);
-            //app.Use(SocketHandler.Acceptor);
+            app.UseWebSockets();
+            app.UseSignalR();
+            app.Use(SocketHandler.Acceptor);
         }
 
 
@@ -54,5 +73,16 @@ namespace Core.Start
         {
             routerBuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
         }
+
+    }
+
+    
+}
+
+namespace System
+{
+    public static class E
+    {
+        public static IEnveroment env { get; set; }
     }
 }

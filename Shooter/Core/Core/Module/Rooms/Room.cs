@@ -12,7 +12,7 @@ namespace Core.Module.Rooms
     {
         public string Id { get; set; }
         public DateTime Date { get; } = DateTime.Now;
-        public List<PlayerModule> Players { get; set; } = new List<PlayerModule>();
-        public StageModule Stage { get; set; }
+        public Dictionary<string, PlayerModule> Players { get; set; } = new Dictionary<string, PlayerModule>();
+        public StageModule Stage { get; set; } = new StageModule();
     }
 }

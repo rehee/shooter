@@ -1,4 +1,5 @@
 ﻿using Core.Module.Rooms;
+using Core.Module.Sprite.Monster;
 using Core.Module.Sprite.Players;
 using Core.Module.Sprite.Status;
 using System;
@@ -10,9 +11,8 @@ namespace Core.Services.Games
 {
     public interface IRoomProcessUnit
     {
-        Room room { get; }
+        Room Room { get; }
         void NextTick();
         string PushMessage();
-        void MapLevelUp();
     }
 }
